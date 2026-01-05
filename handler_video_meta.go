@@ -95,6 +95,11 @@ func (cfg *apiConfig) handlerVideoGet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "Couldn't generate presigned URL", err)
+		return
+	}
+
 	respondWithJSON(w, http.StatusOK, video)
 }
 
